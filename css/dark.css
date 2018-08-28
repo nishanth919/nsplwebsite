@@ -32,7 +32,7 @@ body.dark,
 
 .dark .section,
 .section.dark {
-    background-color: #282828;
+    background-color: #000;
     border-color: rgba(255,255,255,0.1);}
 
 .dark #top-bar,

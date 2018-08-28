@@ -950,7 +950,7 @@ body.stretched #header.full-header #primary-menu ul li.mega-menu .mega-menu-cont
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #FFF;
+    background-color: #FFF; /* for transparent  */
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     -webkit-backface-visibility: hidden;
 }

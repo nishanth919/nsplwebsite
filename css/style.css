@@ -9218,3 +9218,6 @@ label.checkbox { padding-left: 20px; }
     content: '';
     border-bottom: 7px solid #eeeeee;
 }
+a img {
+    padding: 3px !important;
+}

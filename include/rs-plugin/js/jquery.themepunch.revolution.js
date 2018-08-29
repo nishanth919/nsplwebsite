@@ -256,7 +256,6 @@
 
 				}
 
-
 })
 
 		function initSlider(container,opt) {

@@ -99,23 +99,23 @@
 
                         <ul class="">
 
-                            <li class="current"><a href="#"><div onclick="scrolltoprod(home)">Home</div></a> </li>
+                            <li ><a href="#home" ><div>Home</div></a> </li>
 
-							<li ><a href="#"><div onclick="scrolltoprod(whoarewe)">We</div></a>
+							<li ><a href="#whoarewe"><div >We</div></a>
                             </li>
-							<li><a href="#"><div onclick="scrolltoprod(services)">Services</div></a>
+							<li><a href="#services"><div >Services</div></a>
                             </li> 
-							<li><a href="#" ><div onclick="scrolltoprod(products)">Products</div></a>
+							<li><a href="#products" ><div >Products</div></a>
                                 <ul class="productcaret">
-                                    <li><a href="https://www.glbyte.com"><div><i class="icon-line-layers"></i>GlByte</div></a></li>
+                                    <li><a href="#"><div><i class="icon-line-layers"></i>GlByte</div></a></li>
                                     <li><a href="#"><div><i class="icon-line-layers"></i>Invoice Automation</div></a></li>
                                     <li><a href="#"><div><i class="icon-line-layers"></i>Excel Reporting</div></a></li>
                                 </ul>
                             </li>
-							
+							<!-- <li><a href="#customers"><div>Customers</div></a> </li> -->
 							<li><a href="careers.html"><div>Career</div></a> </li>
 
-                            <li><a href="#"><div onclick="scrolltoprod(copyrights)">Contact</div></a> </li>
+                            <li><a href="#copyrights"><div >Contact</div></a> </li>
                         </ul>
                     </nav><!-- #primary-menu end -->
                 </div>
@@ -369,12 +369,12 @@
 
             <script type="text/javascript">
 
-                var tpj=jQuery;
-                tpj.noConflict();
+               // var tpj=jQuery;
+               // tpj.noConflict();
 
-                tpj(document).ready(function() {
+                $(document).ready(function() {
 
-                    var apiRevoSlider = tpj('.tp-banner').show().revolution(
+                    var apiRevoSlider = $('.tp-banner').show().revolution(
                     {
                         dottedOverlay:"none",
                         delay:9000,
@@ -454,27 +454,57 @@
 
                 }); //ready
 
-                function scrolltoprod(scroll) {
-                    // var elmnt = document.getElementById("whoarewe");
-                    // elmnt.scrollIntoView();
-                    let elemScrl = $('#'+scroll.id);
-                    tpj('html, body').animate({
-                        scrollTop: elemScrl.offset().top - 50
-                    }, 1000);
+                // function scrolltoprod(scroll) {
+                //     // var elmnt = document.getElementById("whoarewe");
+                //     // elmnt.scrollIntoView();
+                //     let elemScrl = $('#'+scroll.id);
+                //     $('html, body').animate({
+                //         scrollTop: elemScrl.offset().top - 50
+                //     }, 1000);
+                // }
+                function onScroll(event){
+                    var scrollPos = $(document).scrollTop();
+                    $('#primary-menu a').each(function () {
+                        var currLink = $(this);
+                        var refElement = $(currLink.attr("href"));
+                        // if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+                        //     $('#primary-menu ul li a').removeClass("active");
+                        //     currLink.addClass("active");
+                        // }
+                        // else{
+                        //     //currLink.removeClass("active");
+                        // }
+                    });
                 }
-                tpj(document).ready(function() {
-                    tpj('html, body').hide();
-
+                $('a[href^="#"]').on('click.smoothscroll', function (e) {
+                    e.preventDefault();
+                        $(document).off("scroll");
+                        $('a').each(function () {
+                            $(this).removeClass('active');
+                        })
+                        $(this).addClass('active');
+                        var target = this.hash,
+                        menu = target;
+                        $target = $(target);
+                    $('html, body').stop().animate({
+                        'scrollTop': $target.offset().top
+                    }, 900, 'swing', function () {
+                        window.location.hash = target;
+                        $(document).on("scroll", onScroll);
+                    });
+                });
+                $(document).ready(function() {
+                    $('html, body').hide();
                     if (window.location.hash) {
                         setTimeout(function() {
-                            tpj('html, body').scrollTop(0).show();
-                            tpj('html, body').animate({
-                                scrollTop: tpj(window.location.hash).offset().top
+                            $('html, body').scrollTop(0).show();
+                            $('html, body').animate({
+                                scrollTop: $(window.location.hash).offset().top
                                 }, 1000)
                         }, 0);
                     }
                     else {
-                        tpj('html, body').show();
+                        $('html, body').show();
                     }
                 });
             </script>
@@ -502,7 +532,7 @@
                 <div id="whoarewe" class="section parallax notopmargin nobottommargin notopborder" style="background-image: url(images/About-Us.jpg); padding: 220px 0;" data-stellar-background-ratio="0.3">            
 					<div class="container clearfix">                
                             <div class="heading-block" style="padding-top: 40px;">
-                                    <h3 data-animate="fadeInDown">Who we are</h3>
+                                    <h2 data-animate="fadeInDown">Who we are</h2>
                                    <!--  <span data-animate="fadeInUp">Donec sed sem at tellus lobortis consequat</span> -->
                                 </div>
                                 <p data-animate="fadeInDown">Nekkanti Systems Inc. is a talent pool filled with highly experienced professionals putting in their heart to reduce SDL cycles with a proper global delivery model providing cost effective solutions. We design, implement, upgrade, customize Oracle EBS and bridge gaps with custom tools to ensure client has a ease use of Oracle software.
@@ -640,7 +670,7 @@
                         
                     </div>
                 </div> -->
-                <div class="row" style="margin-top: 80px; padding: 80px; padding-bottom:unset">
+                <div id="customers" class="row" style="margin-top: 80px; padding: 80px; padding-bottom:unset">
                     <div class=" col-md-7 portfolio-image" data-animate="fadeInLeft">
                                 <div class="entry-image clearfix">
                                     <div class="portfolio-single-image masonry-thumbs col-5"  data-lightbox="gallery">
@@ -716,7 +746,7 @@
                                     <li>info@nekkantisystems.com, </li>
                                 </ul>
                             </div>
-							 <div class="col-md-12 col-sm-6 col-xs-6 nopadding clearfix"> 
+							 <div class="col-md-12 col-sm-6 col-xs-12 nopadding clearfix"> 
 								<a href="#" class="social-icon si-small si-borderless nobottommargin si-twitter">
 									<i class="icon-twitter"></i>
 									<i class="icon-twitter"></i>
@@ -739,7 +769,7 @@
                         </div>
                         <div class="col-md-3 col-sm-6 col-xs-12" style="font-size: 11px; text-align: center;">
                                 <img src="images/Logos/NSPL-logo.gif" alt="" class="footer-logo standard-logo" style="width: 120px;margin-left: auto;margin-right: auto;display: block;">
-							<img src="images/Logos/NSPL-logo.gif" alt="" class="footer-logo retina-logo">
+							    <!-- <img src="images/Logos/NSPL-logo.gif" alt="" class="footer-logo retina-logo"> -->
 							Copyright &copy; 2015 Nekkanti Systems. All Rights Reserved.
 						</div>
 					</div>
